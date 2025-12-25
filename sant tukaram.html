@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhakti Heritage: Divine Voices of India</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6a0000;   /* Deep Sacred Maroon */
+            --accent-color: #d4af37;    /* Antique Gold */
+            --bg-color: #fdf5e6;        /* Aged Parchment */
+            --text-color: #2b1d0e;      /* Dark Sepia */
+            --card-bg: rgba(255, 255, 255, 0.6);
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            font-family: 'Lora', serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            background-color: var(--primary-color);
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            border-bottom: 4px solid var(--accent-color);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        nav a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover { color: white; text-shadow: 0 0 10px var(--accent-color); }
+
+        /* --- Hero Section --- */
+        .main-hero {
+            height: 50vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://d18x2uyjeekruj.cloudfront.net/wp-content/uploads/2023/06/wari.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--accent-color);
+            border-bottom: 8px double var(--accent-color);
+        }
+
+        .main-hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            margin: 0;
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+        }
+
+        /* --- Global Layout Elements --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        section { 
+            margin-bottom: 100px; 
+            padding-top: 40px;
+            border-bottom: 1px solid rgba(112, 66, 20, 0.2);
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            border-bottom: 3px solid var(--accent-color);
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        .intro-flex {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .profile-img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 8px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            object-fit: cover;
+        }
+
+        /* --- Tables & Lists --- */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .info-table td {
+            padding: 15px;
+            border-bottom: 1px solid #dcd1b3;
+        }
+
+        .info-table b { color: var(--primary-color); }
+
+        /* --- Video Grids --- */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            border-top: 4px solid var(--accent-color);
+        }
+
+        .video-card:hover { transform: translateY(-5px); }
+
+        .video-card h3 {
+            padding: 15px;
+            margin: 0;
+            background: var(--primary-color);
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            text-align: center;
+            font-family: 'Cinzel', serif;
+        }
+
+        .iframe-wrap {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+        }
+
+        .iframe-wrap iframe {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
+        }
+
+        .video-desc { padding: 15px; font-size: 0.95rem; font-style: italic; }
+
+        /* --- Blockquotes --- */
+        .quote-box {
+            background-color: #fff9f0;
+            border-left: 10px solid var(--primary-color);
+            padding: 30px;
+            margin: 25px 0;
+            font-style: italic;
+            font-size: 1.2rem;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: #1a1108;
+            color: #888;
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 5px solid var(--accent-color);
+        }
+
+        .social-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin: 0 15px;
+            font-family: 'Cinzel', serif;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-hero h1 { font-size: 2.5rem; }
+            .intro-flex { justify-content: center; text-align: center; }
+            nav { gap: 15px; font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#tukaram">Sant Tukaram</a>
+    <a href="#tulsidas">Goswami Tulsidas</a>
+    <a href="#andal">Goda Devi (Andal)</a>
+</nav>
+
+<header class="main-hero">
+    <h1>Bhakti Heritage 2026</h1>
+    <p style="font-size: 1.5rem; font-style: italic; color: white;">"The eternal echoes of devotion and divine poetry."</p>
+</header>
+
+<div class="container">
+
+    <section id="tukaram">
+        <h2>Sant Tukaram Maharaj</h2>
+        <div class="intro-flex">
+            <img src="https://d2av8kbir6lh9m.cloudfront.net/uploads/CaPkuhp8igaSDzwgRrDQkc15XAQVBsex5vmK5FXG.jpg" class="profile-img" alt="Sant Tukaram">
+            <div style="flex: 1; min-width: 300px;">
+                <p>A revolutionary 17th-century Marathi saint-poet who brought spiritual wisdom to the masses through his <b>Abhangs</b>. A devotee of Lord Vitthala, he famously chose the "eternal wealth" of devotion over his worldly profession.</p>
+                <table class="info-table">
+                    <tr><td><b>Era</b></td><td>17th Century Maharashtra, India</td></tr>
+                    <tr><td><b>Primary Deity</b></td><td>Lord Vitthala (Panduranga)</td></tr>
+                    <tr><td><b>Literary Work</b></td><td>Tukaram Gatha (4,500+ Abhangs)</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="quote-box">
+            "O Panduranga, society calls me mad for abandoning my business. But they do not know I have found the imperishable wealth of your name."
+        </div>
+
+        <div class="video-grid">
+            <div class="video-card">
+                <div class="iframe-wrap">
+                    <iframe src="https://www.youtube.com/embed/8k3H41GYDAM"></iframe>
+                </div>
+                <h3>What Did Tuka Pray?</h3>
+                <p class="video-desc">An insight into Tukaram's interpretation of divine liberation through loss.</p>
+            </div>
+            <div class="video-card">
+                <div class="iframe-wrap">
+                    <iframe src="https://www.youtube.com/embed/zpB0cCvTUTY"></iframe>
+                </div>
+                <h3>Hoi Na Bhikari</h3>
+                <p class="video-desc">The anthem of every Varkari devotee longing for Pandharpur.</p>
+            </div>
+            <div class="video-card">
+                <div class="iframe-wrap">
+                    <iframe src="https://www.youtube.com/embed/7U-EK6LeWFw"></iframe>
+                </div>
+                <h3>Life & Lessons</h3>
+                <p class="video-desc">A biographical analysis by Swami Mukundananda.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="tulsidas">
+        <h2>Goswami Tulsidas Ji</h2>
+        <div class="intro-flex">
+            <div style="flex: 1; min-width: 300px;">
+                <p>A 16th-century saint and poet whose devotion to Lord Rama changed Indian literature. He composed the <em>Ramcharitmanas</em>, making the Ramayana accessible to the common man in the Awadhi language.</p>
+                <p><strong>Legacy:</strong> Legend says Lord Hanuman guided him to the darshan of Sri Rama at Chitrakoot.</p>
+                <div style="text-align: center; font-size: 1.5rem; color: var(--primary-color); font-weight: bold; margin: 20px 0;">
+                    ॥ जय श्री राम | जय हनुमान ॥
+                </div>
+            </div>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU6os3H0y_x_WXAWiI4-cpIemsFXqYceZ5Rg&s" class="profile-img" alt="Tulsidas Ji" style="border-radius: 15px;">
+        </div>
+
+        <div class="video-grid">
+            <div class="video-card">
+                <div class="iframe-wrap">
+                    <iframe src="https://www.youtube.com/embed/4-BzjHYhc-M"></iframe>
+                </div>
+                <h3>The Life Story - Part 1</h3>
+            </div>
+            <div class="video-card">
+                <div class="iframe-wrap">
+                    <iframe src="https://www.youtube.com/embed/z56DlPcG8k8"></iframe>
+                </div>
+                <h3>Immortal Compositions</h3>
+            </div>
+            <div class="video-card">
+                <div class="iframe-wrap">
+                    <iframe src="https://www.youtube.com/embed/R3NxAR60jlo"></iframe>
+                </div>
+                <h3>Bhajan & Tribute</h3>
+            </div>
+        </div>
+    </section>
+
+    <section id="andal">
+        <h2>Andal (Goda Devi)</h2>
+        <div class="intro-flex">
+            <img src="https://tirumalatirupatiyatra.in/wp-content/uploads/2024/03/Andal-or-Goda-Devi-Dressed-up-as-Child-1.jpg" class="profile-img" alt="Andal Portrait">
+            <div style="flex: 1; min-width: 300px;">
+                <p>The only female among the twelve Alvar saints of South India (8th Century). Found under a Tulsi plant, she is celebrated as <strong>'Chudikudutha Sudarkodi'</strong>—the one who wore the garland before offering it to the Lord.</p>
+                <div style="display: flex; gap: 20px; margin-top: 20px;">
+                    <div style="background: white; padding: 15px; border-left: 4px solid var(--accent-color); flex: 1;">
+                        <b style="color: var(--primary-color);">Tiruppavai</b><br>30 stanzas sung during Margazhi to awaken the soul.
+                    </div>
+                    <div style="background: white; padding: 15px; border-left: 4px solid var(--accent-color); flex: 1;">
+                        <b style="color: var(--primary-color);">Nachiar Tirumozhi</b><br>143 verses expressing intense longing for Ranganatha.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-grid">
+            <div class="video-card">
+                <div class="iframe-wrap">
+                    <iframe src="https://www.youtube.com/embed/4ESHzf8FSzU"></iframe>
+                </div>
+                <h3>Story in English</h3>
+            </div>
+            <div class="video-card">
+                <div class="iframe-wrap">
+                    <iframe src="https://www.youtube.com/embed/wvvL746c_ww"></iframe>
+                </div>
+                <h3>Story in Tamil</h3>
+            </div>
+            <div class="video-card">
+                <div class="iframe-wrap">
+                    <iframe src="https://www.youtube.com/embed/WmL1852GDt8"></iframe>
+                </div>
+                <h3>Story in Telugu</h3>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <h3 style="color: var(--accent-color); font-family: 'Cinzel', serif;">Bhakti Heritage Calendar Project 2026</h3>
+    <p>A tribute to the saints who shaped the spiritual fabric of India.</p>
+    <div style="margin: 20px 0;">
+        <a href="#" class="social-link">Instagram: @swetch_art</a>
+        <a href="#" class="social-link">Instagram: @Sai_prema_photography</a>
+    </div>
+    <small>&copy; 2025 | Shri Sita Rama Bhakti Project</small>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andalamma: Divine Poetess</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root { --purple: #4B0082; --gold: #D4AF37; --cream: #FFFDF5; }
+        body { background: var(--cream); font-family: 'Playfair Display', serif; margin: 0; color: #333; }
+        nav { background: var(--purple); padding: 15px; color: var(--gold); text-align: center; font-family: 'Cinzel'; letter-spacing: 2px; }
+        .hero { height: 40vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://news.tirumala.org/wp-content/uploads/2023/09/PROCESSION-OF-SRIVILLIPUTTER-MALA-06_1.jpg'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; }
+        .hero h1 { color: var(--gold); font-size: 3.5rem; font-family: 'Cinzel'; margin: 0; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        .work-box { background: white; border-left: 6px solid var(--purple); padding: 20px; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        iframe { width: 100%; height: 200px; border: none; }
+        /* Negligible Next Button */
+        .next-btn { position: fixed; bottom: 10px; right: 10px; color: rgba(75, 0, 130, 0.1); text-decoration: none; font-size: 10px; font-family: sans-serif; }
+        .next-btn:hover { color: var(--purple); }
+    </style>
+</head>
+<body>
+    <nav>ANDALAMMA</nav>
+    <div class="hero"><h1>Goda Devi</h1></div>
+    <div class="container">
+        <p style="font-size: 1.2rem; text-align: center; font-style: italic;">"The earth-born goddess who bound the Almighty with a garland of verses."</p>
+        <div class="work-box">
+            <h3 style="color: var(--purple); margin-top: 0;">Tiruppavai</h3>
+            <p>A collection of 30 stanzas sung during the month of Margazhi to seek the grace of Lord Narayana.</p>
+        </div>
+        <div class="video-grid">
+            <iframe src="https://www.youtube.com/embed/4ESHzf8FSzU"></iframe>
+            <iframe src="https://www.youtube.com/embed/wvvL746c_ww"></iframe>
+        </div>
+    </div>
+    <a href="tukaram.html" class="next-btn">Return to Start &rsaquo;</a>
+</body>
+</html>
