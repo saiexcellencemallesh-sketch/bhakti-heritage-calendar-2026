@@ -3,39 +3,235 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goswami Tulsidas: Ram Bhakti</title>
+    <title>Bhakthi Heritage Art Calendar 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        :root { --saffron: #FF9933; --deep-red: #8B0000; --cream: #FFF5E1; }
-        body { background: var(--cream); color: var(--deep-red); font-family: 'Georgia', serif; margin: 0; }
-        header { background: var(--deep-red); color: var(--saffron); padding: 50px 20px; text-align: center; border-bottom: 6px solid var(--saffron); }
-        .container { max-width: 900px; margin: 0 auto; padding: 40px; background: white; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-top: 20px; }
-        .chant { text-align: center; font-size: 1.8rem; color: var(--saffron); font-weight: bold; margin: 30px 0; }
-        .video-card { background: var(--cream); padding: 15px; margin-bottom: 20px; border-top: 4px solid var(--saffron); }
-        iframe { width: 100%; height: 250px; }
-        /* Negligible Next Button */
-        .next-btn { position: fixed; bottom: 10px; right: 10px; color: rgba(139, 0, 0, 0.15); text-decoration: none; font-size: 10px; font-family: sans-serif; }
-        .next-btn:hover { color: var(--deep-red); }
+        :root {
+            --gold: #d4af37;
+            --dark: #1a1a1a;
+            --paper: #fdf5e6;
+            --brown: #4e342e;
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+        body, html { margin: 0; padding: 0; width: 100%; background: var(--paper); color: var(--brown); font-family: 'Lora', serif; }
+
+        /* FIXED CIRCULAR LOGO - ON ALL PAGES */
+        .fixed-logo {
+            position: fixed; top: 15px; left: 15px; z-index: 9999;
+            width: 110px; height: 110px; border: 3px double var(--gold);
+            border-radius: 50%; background: white; display: flex; align-items: center;
+            justify-content: center; text-align: center; font-family: 'Cinzel';
+            font-size: 9px; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            padding: 8px; line-height: 1.2; color: var(--brown); pointer-events: none;
+        }
+
+        /* PAGE DISPLAY LOGIC */
+        .page { display: none; min-height: 100vh; position: relative; padding-bottom: 50px; }
+        .page.active { display: block; animation: fadeIn 0.8s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* LAYOUT */
+        .container { max-width: 800px; margin: 0 auto; padding: 120px 20px 40px; position: relative; z-index: 2; }
+        header { text-align: center; margin-bottom: 40px; }
+        h1 { font-family: 'Cinzel', serif; font-size: clamp(2rem, 8vw, 3.5rem); margin: 0; }
+        .tagline { color: var(--gold); font-family: 'Cinzel'; letter-spacing: 2px; font-weight: bold; font-size: 1.1rem; }
+
+        .content-card { background: white; padding: 40px; border-radius: 2px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid rgba(212,175,55,0.2); }
+        .hero-img { width: 100%; max-width: 500px; border: 6px solid white; outline: 1px solid var(--gold); margin: 20px auto 40px; display: block; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+
+        /* ARTICLE FLOW */
+        p { line-height: 1.8; font-size: 1.15rem; margin-bottom: 25px; }
+        .quote { font-style: italic; border-left: 5px solid var(--gold); padding: 15px 25px; margin: 40px 0; font-weight: bold; background: #fffcf5; font-size: 1.2rem; }
+        h3 { font-family: 'Cinzel', serif; color: var(--gold); border-bottom: 1px solid var(--gold); padding-bottom: 10px; margin-top: 40px; }
+
+        /* VIDEO RESPONSIVENESS */
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 30px 0; border: 1px solid var(--gold); }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 600px) { .video-grid { grid-template-columns: 1fr; } }
+
+        /* NAVIGATION & FOOTER */
+        .next-month-box { background: var(--brown); color: white; padding: 60px 20px; text-align: center; margin-top: 60px; }
+        .btn { background: var(--gold); color: var(--dark); padding: 18px 45px; font-family: 'Cinzel'; font-weight: bold; border-radius: 50px; border: none; cursor: pointer; text-decoration: none; display: inline-block; font-size: 1rem; }
+        .btn:hover { background: white; color: var(--brown); }
+
+        .page-footer { padding: 40px; text-align: center; font-size: 0.85rem; background: var(--dark); color: #888; border-top: 2px solid var(--gold); line-height: 1.6; }
+        .page-footer b { color: var(--gold); }
+
+        /* SPECIAL FOR DECEMBER */
+        .you-circle { width: 220px; height: 220px; border: 6px solid var(--gold); border-radius: 50%; margin: 40px auto; background: white; display: flex; align-items: center; justify-content: center; font-size: 3rem; font-family: 'Cinzel'; color: var(--gold); box-shadow: 0 0 30px rgba(212,175,55,0.3); }
+
+        @media (max-width: 600px) { .fixed-logo { width: 85px; height: 85px; font-size: 7px; top: 10px; left: 10px; } }
     </style>
 </head>
 <body>
-    <header>
-        <h1 style="margin:0;">Goswami Tulsidas Ji</h1>
-        <p>Bhakthi Heritage Calendar 2026</p>
-    </header>
-    <div class="container">
-        <div style="display:flex; gap:20px; align-items:center; flex-wrap:wrap;">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU6os3H0y_x_WXAWiI4-cpIemsFXqYceZ5Rg&s" style="width:200px; border:4px solid var(--saffron);">
-            <div style="flex:1;">
-                <h2>A Divine Introduction</h2>
-                <p>Tulsidas Ji composed the <em>Ramcharitmanas</em>, bringing the Ramayana to the common people.</p>
+
+    <div class="fixed-logo">BHAKTHI<br>HERITAGE<br>ART CALENDAR<br>2026</div>
+
+    <section id="intro" class="page">
+        <div class="container">
+            <header>
+                <p class="tagline">Art Calendar 2026</p>
+                <h1 style="font-size: 4rem;">BHAKTHI</h1>
+                <p style="font-style: italic; font-weight: bold; font-size: 1.4rem;">EXPERIENCING PUREST FORM OF LOVE!</p>
+            </header>
+            <div class="content-card" style="text-align: center;">
+                <p>Welcome to a year-long sacred journey through the heart. This digital companion unlocks the divine stories, sacred music, and profound wisdom hidden behind each month's artwork.</p>
+                <p>Turn the pages of your calendar and step into the hearts of the greatest saints.</p>
+                <button class="btn" onclick="navigateTo('jan')">BEGIN THE JOURNEY</button>
             </div>
         </div>
-        <div class="chant">॥ जय श्री राम ॥</div>
-        <div class="video-card">
-            <iframe src="https://www.youtube.com/embed/4-BzjHYhc-M" frameborder="0"></iframe>
-            <p style="text-align:center; font-weight:bold;">The Life of a Saint</p>
+        <div class="page-footer">
+            Illustrations & Design: <b>Sweta Sairam</b><br>
+            Content & Playlist Curation: <b>Sai Mallesh</b><br>
+            Follow: <b>@swetcha_art</b> & <b>@Sai_prema_photography</b>
         </div>
-    </div>
-    <a href="andal.html" class="next-btn">Next &rsaquo;</a>
+    </section>
+
+    <section id="jan" class="page">
+        <div class="container">
+            <header><h1>January</h1><p class="tagline">The Path of Devotion</p></header>
+            <div class="content-card">
+                <img src="https://static.sadhguru.org/d/46272/1626099405-bhakti-path.jpg" class="hero-img">
+                <p>Bhakti is the nectar of devotion—a state where the soul dissolves into the infinite love of the Divine. It is the shortest and sweetest path to self-realization, where logic ends and pure love begins.</p>
+                <div class="quote">"Bhakti is the bridge where the seeker and the Sought become one."</div>
+                
+                <h3>Insights into Bhakti</h3>
+                <p>The song <b>Jhoot Chor</b> represents the stripping away of falsehoods to find the core of devotion. Witness the explanation of this path by <b>Madhusudan Sai</b> below.</p>
+                
+                <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/n4p8E_5xHLo"></iframe></div>
+                <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/fD_t7-SPlA8"></iframe></div>
+                
+                <div class="video-grid">
+                    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/zO99U-h8q_k"></iframe></div>
+                    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/W9l6vN4O3rM"></iframe></div>
+                </div>
+            </div>
+        </div>
+        <div class="next-month-box">
+            <p>Admire the art for February on your calendar.</p>
+            <button class="btn" onclick="alert('Open your camera and scan the February QR code!')">📷 SCAN FEBRUARY</button>
+        </div>
+        <div class="page-footer">Illustrations: <b>Sweta Sairam</b> | Content: <b>Sai Mallesh</b> | <b>@swetcha_art</b></div>
+    </section>
+
+    <section id="feb" class="page">
+        <div class="container">
+            <header><h1>February</h1><p class="tagline">Sant Tulsidas</p></header>
+            <div class="content-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU6os3H0y_x_WXAWiI4-cpIemsFXqYceZ5Rg&s" class="hero-img">
+                <h3>The Turning Point</h3>
+                <p>Before his sainthood, Tulsidas was consumed by intense attachment to his wife, Ratnavali. One night, he crossed a flooded river using a corpse as a raft just to see her. Ratnavali, seeing his obsession, delivered a spiritual shock:</p>
+                <div class="quote">"If you loved the Divine with the same intensity you feel for this body of flesh and bone, you would be realized in an instant."</div>
+                <p>These piercing words redirected his passion into an eternal love for Sri Rama, leading to the creation of the <i>Ramcharitmanas</i>.</p>
+                
+                <h3>His Story & Creations</h3>
+                <div class="video-grid">
+                    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/4-BzjHYhc-M"></iframe></div>
+                    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/OxzVwF6Anzw"></iframe></div>
+                </div>
+                <h3>Compositions</h3>
+                <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/z56DlPcG8k8"></iframe></div>
+                <div class="video-grid">
+                    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/ZFb-W1PAcnI"></iframe></div>
+                    <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/R3NxAR60jlo"></iframe></div>
+                </div>
+            </div>
+        </div>
+        <div class="next-month-box"><button class="btn" onclick="alert('Scan March on your calendar!')">📷 SCAN MARCH</button></div>
+        <div class="page-footer">Illustrations: <b>Sweta Sairam</b> | Content: <b>Sai Mallesh</b> | <b>@swetcha_art</b></div>
+    </section>
+
+    <section id="mar" class="page">
+        <div class="container">
+            <header><h1>March</h1><p class="tagline">Goda Devi (Andal)</p></header>
+            <div class="content-card">
+                <p>Andal (8th Century) is the only female among the twelve Alvar saints of South India. Found as a baby under a Tulsi plant, she grew up breathing the air of devotion.</p>
+                <p>She is celebrated as <b>'Chudikudutha Sudarkodi'</b>—the bright woman who gave the Lord the garland she had first worn herself. Her love was a sovereign claim over the Divine.</p>
+                
+                <h3>Tiruppavai & Nachiar Tirumozhi</h3>
+                <p>The <b>Tiruppavai</b> is a call to awaken the soul. Her second work, <b>Nachiar Tirumozhi</b>, expresses her intense longing for Lord Ranganatha, including her dream wedding.</p>
+                
+                <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/4ESHzf8FSzU"></iframe></div>
+                <p><i>Biopic of Sri Andal Devi (English)</i></p>
+                <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/wvvL746c_ww"></iframe></div>
+                <p><i>Tamil Harikatha: The Story of Andal</i></p>
+                <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/WmL1852GDt8"></iframe></div>
+                <p><i>Thiruppavai Discourse by Sri Chinna Jeeyar Swamiji</i></p>
+            </div>
+        </div>
+        <div class="next-month-box"><button class="btn" onclick="alert('Scan April on your calendar!')">📷 SCAN APRIL</button></div>
+        <div class="page-footer">Illustrations: <b>Sweta Sairam</b> | Content: <b>Sai Mallesh</b> | <b>@swetcha_art</b></div>
+    </section>
+
+    <section id="apr" class="page">
+        <div class="container">
+            <header><h1>April</h1><p class="tagline">Saint Tyagaraja</p></header>
+            <div class="content-card">
+                <p>Tyagaraja, the crown jewel of Carnatic music, shared a raw, human bond with Rama. Like many of us, he often blamed God (Ninda) for his troubles before reaching bliss (Ananda).</p>
+                
+                <h3>From Ninda to Ananda</h3>
+                <p>Narrated by <b>Vinaya Varanasi</b>, see how his complaints turned into soul-stirring worship. (Follow Vinaya Varanasi for his global live shows!)</p>
+                <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/yhjND38WN54?start=280"></iframe></div>
+
+                <h3>Classical Bliss</h3>
+                <p>The soothing voice of <b>M.S. Subbulakshmi Amma</b> capturing the essence of Tyagaraja's devotion.</p>
+                <div class="video-wrapper"><iframe src="https://www.youtube.com/embed/lzkUr1w7Mak?start=280"></iframe></div>
+            </div>
+        </div>
+        <div class="next-month-box"><button class="btn" onclick="alert('Scan May on your calendar!')">📷 SCAN MAY</button></div>
+        <div class="page-footer">Illustrations: <b>Sweta Sairam</b> | Content: <b>Sai Mallesh</b> | <b>@swetcha_art</b></div>
+    </section>
+
+    <section id="dec" class="page">
+        <div class="container" style="text-align: center;">
+            <header><h1>December</h1><p class="tagline">The Saint in YOU</p></header>
+            <div class="content-card">
+                <div class="you-circle">YOU</div>
+                <p>As Swami Vivekananda said: <b>"Every soul is potentially divine."</b></p>
+                <p>After a year with the saints, realize that the same light resides in you. You are not different from them. Select any quality—Tulsidas’s focus, Andal’s claim, Tyagaraja’s music—and begin your journey today.</p>
+                
+                <div class="quote" style="background: white; border: 1px dashed var(--gold);">
+                    <h3 style="margin-top:0;">Feedback & Gratitude</h3>
+                    <p>Thank you for walking this path with us. Please share your feedback and experience on Instagram.</p>
+                </div>
+            </div>
+        </div>
+        <div class="page-footer">
+            <b>Bhakthi Heritage Project 2026</b><br>
+            Sweta Sairam & Sai Mallesh<br>
+            Follow: <b>@swetcha_art</b> & <b>@Sai_prema_photography</b>
+        </div>
+    </section>
+
+    <script>
+        // NAVIGATION LOGIC
+        function navigateTo(id) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(p => p.classList.remove('active'));
+            
+            // Show target
+            const target = document.getElementById(id);
+            if (target) {
+                target.classList.add('active');
+                window.scrollTo(0,0);
+            }
+        }
+
+        // URL HANDLER FOR QR CODES
+        function handleQR() {
+            const params = new URLSearchParams(window.location.search);
+            const month = params.get('month');
+            if (month) {
+                navigateTo(month.toLowerCase());
+            } else {
+                navigateTo('intro');
+            }
+        }
+
+        window.onload = handleQR;
+    </script>
 </body>
 </html>
